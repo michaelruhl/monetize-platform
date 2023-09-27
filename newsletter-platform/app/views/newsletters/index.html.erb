@@ -1,0 +1,9 @@
+<h1>Newsletters</h1>
+
+<a href="/newsletters/new">Add </a> <br />
+
+<% @newsletters.each do |n| %>
+  <%= n.title %> 
+  <%= link_to "edit", edit_newsletter_path(n)%>
+  <br />
+<% end %>

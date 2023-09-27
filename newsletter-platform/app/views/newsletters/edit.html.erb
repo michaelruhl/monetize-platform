@@ -1,0 +1,10 @@
+<h1>Update <%= @newsletter.title %></h1>
+
+<form action="<%= newsletter_path(@newsletter) %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH" />
+  <input type="text" name="newsletter[title]" value="<%= @newsletter.title %>" />
+  <button>Update</button>
+</form>
+
+
+

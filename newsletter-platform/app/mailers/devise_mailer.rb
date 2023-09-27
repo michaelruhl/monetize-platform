@@ -3,3 +3,4 @@ class DeviseMailer < Devise::Mailer
         @name = record.name
         super
     end
+end
