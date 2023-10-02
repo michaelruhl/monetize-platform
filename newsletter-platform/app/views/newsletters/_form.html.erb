@@ -1,0 +1,36 @@
+<%= path = @newsletter.persisted? ? newsletter_path(@newsletter) : newsletters_path %>
+
+<form action="<%= path %>" method="POST">
+  <%= csrf_meta_tags %>
+  <div>
+    <% if @newsletter.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+    <% end %>
+    <label
+      for="title"
+      class="block text-sm font-medium leading-6 text-grayy-900"
+      >Title</label
+    >
+    <div class="mt-2">
+      <input
+        type="text"
+        name="newsletter[title]"
+        id="title"
+        value="<%= @newsletter.title %>"
+        placeholder="A plucky title for your subscribers"
+        class="block w-full rounded-md border-0 py-1.5 text-gray"
+      />
+    </div>
+  </div>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <button
+    type="submit"
+    class="rounded-md bg-indigo-600 py-1.5 px-2.5 text-sm font-semibold text-white shadow-sm hover: mt-4"
+  >
+    <% if @newsletter.persisted? %> 
+    Update 
+    <% else %> 
+    Create 
+    <% end %>
+  </button>
+</form>

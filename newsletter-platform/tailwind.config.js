@@ -1,6 +1,7 @@
 module.exports = {
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('@tailwindcss/forms'),
 ],
   content: [
     "./node_modules/flowbite/**/*.js",

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#root'
+
+  get 'dashboard', to: 'pages#dashboard'
   
   resources :newsletters
 

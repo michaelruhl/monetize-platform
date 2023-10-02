@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": "*.erb",
+      "options": {
+        "parser": "html",
+        "singleQuote": true
+      }
+    }
+  ]
+}
