@@ -2,3 +2,6 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import 'flowbite';
+
+import { Select, initTE } from "tw-elements";
+initTE({ Select });

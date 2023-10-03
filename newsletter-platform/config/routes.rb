@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: 'pages#root'
-
-  get 'dashboard', to: 'pages#dashboard'
-  
   resources :newsletters
-
+  resources :issues
+  devise_for :users
+  
+  get 'dashboard', to: 'pages#dashboard'
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

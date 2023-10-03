@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :confirmable, :trackable
 
   has_many :newsletters, foreign_key: :author_id, dependent: :destroy
+  has_many :issues, through: :newsletters
 end

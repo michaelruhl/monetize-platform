@@ -1,0 +1,77 @@
+<%= path = @issue.persisted? ? issue_path(@issue) : issues_path %>
+
+
+<form action="<%= path %>" method="POST">
+  <%= csrf_meta_tags %>
+  <div>
+    <% if @issue.persisted? %>
+    <input type="hidden" name="_method" value="PATCH" />
+    <% end %>
+    <div class="mt-2">
+      <label
+        for="newsletter"
+        class="block text-sm font-medium leading-6 text-gray-900"
+        >Newsletter</label
+      >
+      <select
+        id="newsletter"
+        name="issue[newsletter_id]"
+        class="mt-2 w-full rounded-md border-0 py-1.5 pl-3 pr-10"
+        data-te-select-init
+      >
+        <% current_user.newsletters.each do |n| %>
+        <option value="<%= n.id %>" <%= 'selected' if @issue.newsletter_id  == n.id %> ><%= n.title %></option>
+        <% end %>
+      </select>
+    </div>
+    <label
+      for="subject"
+      class="block text-sm font-medium leading-6 text-grayy-900"
+      >subject</label
+    >
+    <div class="mt-2">
+      <input
+        type="text"
+        name="issue[subject]"
+        id="subject"
+        value="<%= @issue.subject %>"
+        placeholder="A plucky subject for your subscribers"
+        class="block w-full rounded-md border-0 py-1.5 text-gray"
+      />
+    </div>
+  </div>
+  <div>
+    <label
+      for="content"
+      class="block text-sm font-medium leading-6 text-gray-900"
+      >Add your content</label
+    >
+    <div>
+      <textarea
+        rows="4"
+        name="issue[content]"
+        class="block w-full rounded-md border-0 text-gray-900 shadow-sm"
+      ><%= @issue.content %>
+    </textarea>
+    </div>
+
+    <div>
+        <label for="published_at">
+            Published at
+        </label>
+        <input type="datetime-local" name="issue[published_at]" value="<% if @issue.published_at.present? %>
+        <%= @issue.published_at.strftime('%FT%T') %>
+      <% else %>
+       
+        <%= '' %>
+      <% end %>" id="published_at" />
+    </div>
+  </div>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <button
+    type="submit"
+    class="rounded-md bg-indigo-600 py-1.5 px-2.5 text-sm font-semibold text-white shadow-sm hover: mt-4"
+  >
+    <% if @issue.persisted? %> Update <% else %> Create <% end %>
+  </button>
+</form>
