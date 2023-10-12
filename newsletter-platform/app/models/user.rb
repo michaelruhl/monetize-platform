@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   has_many :newsletters, foreign_key: :author_id, dependent: :destroy
   has_many :issues, through: :newsletters
+  has_many :accounts, foreign_key: :author_id, dependent: :destroy
 end

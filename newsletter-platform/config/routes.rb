@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'pages#root'
   resources :newsletters
   resources :issues
-  devise_for :users
-  
+  resources :accounts
+  resources :account_links
   get 'dashboard', to: 'pages#dashboard'
+  
+  # localhost:3000
+  post '/webhooks/:source', to: 'webhooks#create'
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

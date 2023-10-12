@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_03_044345) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_11_204323) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "author_id", null: false
+    t.string "stripe_account_id", null: false
+    t.boolean "charges_enabled", default: false
+    t.boolean "transfers_enabled", default: false
+    t.boolean "details_submitted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_accounts_on_author_id"
+    t.index ["stripe_account_id"], name: "index_accounts_on_stripe_account_id", unique: true
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.json "data"
+    t.string "source"
+    t.text "processing_errors"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "issues", force: :cascade do |t|
     t.bigint "newsletter_id", null: false
@@ -55,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_03_044345) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accounts", "users", column: "author_id"
   add_foreign_key "issues", "newsletters"
   add_foreign_key "newsletters", "users", column: "author_id"
 end
