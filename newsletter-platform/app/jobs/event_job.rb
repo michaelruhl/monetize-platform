@@ -4,14 +4,14 @@ class EventJob < ApplicationJob
   def perform(event)
     # Do something later
     
-    if event.source == 'stripe'
+    if event.source == "stripe"
       puts "Handling Stripe event: #{event.inspect}" 
       handle_stripe_event(event)
     end
   end
 
   def handle_stripe_event(raw_event)
-    event = Stripe::Event.construct_from(JSON.parse(raw_event.Data))
+    event = Stripe::Event.construct_from(JSON.parse(raw_event.data))
     case event.type
     when 'account.updated'
       handle_account_updated(event)

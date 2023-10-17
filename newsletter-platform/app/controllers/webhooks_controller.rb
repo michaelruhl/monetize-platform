@@ -5,7 +5,7 @@ class WebhooksController < ApplicationController
         @event = Event.create!(
             data: params.to_json,
             source: params[:source],
-            status: :pending
+            status: :pending,
         )
         EventJob.perform_later(@event)
         render json: { status: :ok }
