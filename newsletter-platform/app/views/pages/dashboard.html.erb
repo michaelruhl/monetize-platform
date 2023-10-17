@@ -1,1 +1,39 @@
 Your Dashboard
+
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <h1>
+      Newsletters
+      <p>Subscribe to get started!</p>
+    </h1>
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full text-center text-sm font-light">
+          <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              
+              <th scope="col" class="px-6 py-4">Title</th>
+              <th scope="col" class="px-6 py-4"><span>View</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @newsletters.each do |n| %>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                <%= n.title %>
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <a href="<%= newsletter_path(n) %>">View<span> <%= n.title %> </span></a>
+
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    
+
+  </div>
+</div>

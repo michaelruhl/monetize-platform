@@ -2,12 +2,26 @@ class EventJob < ApplicationJob
   queue_as :default
 
   def perform(event)
+    event.update(
+      status: :processing,
+
+    )
     # Do something later
     
     if event.source == "stripe"
       puts "Handling Stripe event: #{event.inspect}" 
       handle_stripe_event(event)
     end
+    
+    event.update(
+      status: :processed
+    )
+  rescue => e
+    event.update(
+      processing_errors: e.to_s,
+      status: "failed"
+    )
+
   end
 
   def handle_stripe_event(raw_event)

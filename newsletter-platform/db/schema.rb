@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_11_204323) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_17_080628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_204323) do
     t.boolean "details_submitted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "default_account", default: true
     t.index ["author_id"], name: "index_accounts_on_author_id"
     t.index ["stripe_account_id"], name: "index_accounts_on_stripe_account_id", unique: true
   end

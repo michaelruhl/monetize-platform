@@ -100,10 +100,122 @@
    </div>
 
 </aside>
-<div class="p-4 sm:ml-64">
-<%= yield %>
-   
+
+<div class="grid grid-cols-2 gap-4">
+
+	<!-- Each <div> is a single column.
+	Place some content inside to see the effect. -->
+	<div class="p-4 sm:ml-64 sm:mr-20">
+
+
+<!-- <% @newsletters.each do |n| %> <%= n.title %> <%= link_to "edit",
+edit_newsletter_path(n)%>
+<br />
+<% end %> -->
+
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <h1>
+      Newsletters
+      <a href="/newsletters/new">Add </a>
+    </h1>
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full text-center text-sm font-light">
+          <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              
+              <th scope="col" class="px-6 py-4">Title</th>
+              <th scope="col" class="px-6 py-4"><span>Edit</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @subscribed_newsletters.each do |n| %>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                <%= n.title %>
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <a href="<%= edit_newsletter_path(n) %>">Edit<span> <%= n.title %> </span></a>
+
+              </td>
+            </tr>
+            <% end %>
+
+            <hr />
+            <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              
+              <th scope="col" class="px-6 py-4">Title</th>
+              <th scope="col" class="px-6 py-4"><span>Edit</span></th>
+            </tr>
+          </thead>
+
+            <% @newsletters.each do |n| %>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                <%= n.title %>
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <a href="<%= edit_newsletter_path(n) %>">Edit<span> <%= n.title %> </span></a>
+
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
+
+   </div>
+
+	<div class="p-4 m:ml-20">
+   
+
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <h1>
+      Issues
+      <p>Read on, Friend!</p>
+    </h1>
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full text-center text-sm font-light">
+          <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              
+              <th scope="col" class="px-6 py-4">Title</th>
+              <th scope="col" class="px-6 py-4"><span>Edit</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @issues.each do |n| %>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                <%= n.subject %>
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <a href="<%= issue_path(n) %>">Read<span> <%= n.subject %> </span></a>
+
+              </td>
+            </tr>
+            <% end %>
+            <% if @issues.empty? %>
+            Create a new issue
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+   </div>
+
+</div>
+
  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
    </body>
