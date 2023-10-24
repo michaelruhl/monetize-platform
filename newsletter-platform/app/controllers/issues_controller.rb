@@ -2,11 +2,12 @@ class IssuesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @issues = current_user.issues
+    @issues = current_user.issues.includes(:newsletter)
   end
 
   def new
     @issue = Issue.new
+    # @issue = Issue.new(published_at: Time.now)
 
   end
 

@@ -1,4 +1,13 @@
-<div>
-  <h1 class="font-bold text-4xl">Newsletters#show</h1>
-  <p>Find me in app/views/newsletters/show.html.erb</p>
-</div>
+<%= @newsletter.title %> <br />
+<% if current_user.subscribed_newsletters.include?(@newsletter) %>
+you're subscribed!
+<% else %>
+<form action="/memberships" method="POST" data-turbo="false">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"" />
+  <input type="hidden" name="membership[newsletter_id]" value="<%= @newsletter.id %>"" />
+
+
+<button type="submit" class="primary"> Subscribe</button>
+</form>
+<% end %>
+```

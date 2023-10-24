@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_17_080628) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_17_162439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_17_080628) do
     t.boolean "default_account", default: true
     t.index ["author_id"], name: "index_accounts_on_author_id"
     t.index ["stripe_account_id"], name: "index_accounts_on_stripe_account_id", unique: true
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.bigint "reader_id", null: false
+    t.string "stripe_customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reader_id"], name: "index_customers_on_reader_id"
+    t.index ["stripe_customer_id"], name: "index_customers_on_stripe_customer_id", unique: true
   end
 
   create_table "events", force: :cascade do |t|
@@ -44,6 +53,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_17_080628) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["newsletter_id"], name: "index_issues_on_newsletter_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "newsletter_id", null: false
+    t.bigint "reader_id", null: false
+    t.string "stripe_subscription_id"
+    t.string "status", default: "pending", null: false
+    t.string "stripe_checkout_session_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["newsletter_id", "reader_id"], name: "index_memberships_on_newsletter_id_and_reader_id", unique: true
+    t.index ["newsletter_id"], name: "index_memberships_on_newsletter_id"
+    t.index ["reader_id"], name: "index_memberships_on_reader_id"
+    t.index ["stripe_subscription_id"], name: "index_memberships_on_stripe_subscription_id", unique: true
   end
 
   create_table "newsletters", force: :cascade do |t|
@@ -78,6 +101,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_17_080628) do
   end
 
   add_foreign_key "accounts", "users", column: "author_id"
+  add_foreign_key "customers", "users", column: "reader_id"
   add_foreign_key "issues", "newsletters"
+  add_foreign_key "memberships", "newsletters"
+  add_foreign_key "memberships", "users", column: "reader_id"
   add_foreign_key "newsletters", "users", column: "author_id"
 end

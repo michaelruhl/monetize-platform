@@ -13,8 +13,8 @@
           <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
               
-              <th scope="col" class="px-6 py-4">Title</th>
-              <th scope="col" class="px-6 py-4"><span>Edit</span></th>
+              <th scope="col" class="px-6 py-4">Subject</th>
+              <th scope="col" class="px-6 py-4"><span>Newsletter</span></th>
             </tr>
           </thead>
           <tbody>
@@ -22,6 +22,9 @@
             <tr class="border-b dark:border-neutral-500">
               <td class="whitespace-nowrap px-6 py-4 font-medium">
                 <%= n.subject %>
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                <%= n.newsletter.title %>
               </td>
               <td class="whitespace-nowrap px-6 py-4">
                 <a href="<%= edit_issue_path(n) %>">Edit<span> <%= n.subject %> </span></a>
