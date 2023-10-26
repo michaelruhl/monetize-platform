@@ -1,7 +1,9 @@
-<%= path = @issue.persisted? ? issue_path(@issue) : issues_path %>
+<div class="text-white">
+<% path = @issue.persisted? ? issue_path(@issue) : issues_path %>
 
+</div>
 
-<form action="<%= path %>" method="POST">
+<form action="<%= path %>" method="POST" class="flex flex-col gap-6 items-center">
   <%= csrf_meta_tags %>
   <div>
     <% if @issue.persisted? %>
@@ -10,7 +12,7 @@
     <div class="mt-2">
       <label
         for="newsletter"
-        class="block text-sm font-medium leading-6 text-gray-900"
+        class="text-xl font-medium text-gray-900"
         >Newsletter</label
       >
       <select
@@ -26,8 +28,8 @@
     </div>
     <label
       for="subject"
-      class="block text-sm font-medium leading-6 text-grayy-900"
-      >subject</label
+      class="text-xl font-medium text-gray-900"
+      >Subject</label
     >
     <div class="mt-2">
       <input
@@ -40,17 +42,17 @@
       />
     </div>
   </div>
-  <div>
+  <div class="m-5 gap-6">
     <label
       for="content"
-      class="block text-sm font-medium leading-6 text-gray-900"
+      class="block text-xl font-medium leading-6 text-gray-900"
       >Add your content</label
     >
-    <div>
+    <div class="m-5 gap-6">
       <textarea
         rows="4"
         name="issue[content]"
-        class="block w-full rounded-md border-0 text-gray-900 shadow-sm"
+        class="m-8 w-full rounded-md border border-solid text-gray-900 shadow-sm"
       ><%= @issue.content %>
     </textarea>
     </div>

@@ -1,6 +1,8 @@
+<div class="text-white">
 <%= path = @newsletter.persisted? ? newsletter_path(@newsletter) : newsletters_path %>
+</div>
 
-<form action="<%= path %>" method="POST">
+<form action="<%= path %>" method="POST" class="flex flex-col gap-4 items-center">
   <%= csrf_meta_tags %>
   <div>
     <% if @newsletter.persisted? %>
@@ -8,17 +10,17 @@
     <% end %>
     <label
       for="title"
-      class="block text-sm font-medium leading-6 text-grayy-900"
+      class="block text-center text-3xl font-medium leading-6 text-grayy-900"
       >Title</label
     >
-    <div class="mt-2">
+    <div class="flex justify-center mt-2">
       <input
         type="text"
         name="newsletter[title]"
         id="title"
         value="<%= @newsletter.title %>"
         placeholder="A plucky title for your subscribers"
-        class="block w-full rounded-md border-0 py-1.5 text-gray"
+        class=" flex text-center border border-solid w-half rounded-md border-0 py-1.5 text-gray"
       />
     </div>
   </div>

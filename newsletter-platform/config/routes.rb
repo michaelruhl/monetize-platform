@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :account_links
   resources :memberships
   resource :billing
+  resources :login_links
   get 'dashboard', to: 'pages#dashboard'
   
   # localhost:3000

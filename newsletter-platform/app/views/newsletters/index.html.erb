@@ -7,11 +7,15 @@ edit_newsletter_path(n)%>
 
 <div class="flex flex-col">
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <h1>
+
+  <div class="flex justify-center p-5 items-between gap-5">
+    <div class="text-3xl text-center">
       Newsletters
-      <a href="/newsletters/new">Add </a>
-    </h1>
-    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+    </div>
+      <a href="/newsletters/new" class="ml-5 inline-block px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">Add </a>
+  </div>
+      
+    <div class="flex inline-block justify-center min-w-full py-2 sm:px-6 lg:px-8">
       <div class="overflow-hidden">
         <table class="min-w-full text-center text-sm font-light">
           <thead class="border-b font-medium dark:border-neutral-500">
@@ -28,7 +32,7 @@ edit_newsletter_path(n)%>
                 <%= n.title %>
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                <a href="<%= edit_newsletter_path(n) %>">Edit<span> <%= n.title %> </span></a>
+                <a href="<%= edit_newsletter_path(n) %>" class="ml-5 inline-block px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out" >Edit</a>
 
               </td>
             </tr>

@@ -1,15 +1,16 @@
 <div class="flex flex-col">
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <h1>
-      Newsletters
-      <a href="/newsletters/new">Add </a>
-    </h1>
+    <div class="flex justify-center p-5 items-between gap-5">
+    <div class="text-3xl text-center">
+      Accounts
+    </div>
+  </div>
     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
       <div class="overflow-hidden">
         <table class="min-w-full text-center text-sm font-light">
           <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
-              <th scope="col" class="px-6 py-4">Account ID</th>
+              <th scope="col" class="px-6 py-4">Stripe Account ID</th>
               <th scope="col" class="px-6 py-4"><span>Charges enabled</span></th>
               <th scope="col" class="px-6 py-4">Transfers enabled</th>
               <th scope="col" class="px-6 py-4">Onboarding complete</th>
@@ -35,16 +36,25 @@
                   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                   <input type="hidden" name="account_id" value="<%= n.stripe_account_id %>">
 
-                  <button type="submit">Finish onboarding </button>
+                  <button type="submit" class="ml-5 inline-block px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out" >Finish onboarding </button>
                 </form>
 
                 <% else  %>
-                <td> True </td>
+                 True
                 <% end %>
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                <a href="<%= edit_account_path(n) %>">Edit</a>
+                
+                
+                <form action="/login_links" method="POST" data-turbo="false">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                  <input type="hidden" name="account_id" value="<%= n.stripe_account_id %>">
+
+                  <button type="submit" class="ml-5 inline-block px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out" >Open Dashboard</button>
+                </form>
+
               </td>
+             
             </tr>
             <% end %>
           </tbody>

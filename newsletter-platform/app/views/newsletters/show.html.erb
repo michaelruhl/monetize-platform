@@ -1,3 +1,4 @@
+<div class="flex flex-col gap-5 text-4xl items-center">
 <%= @newsletter.title %> <br />
 <% if current_user.subscribed_newsletters.include?(@newsletter) %>
 you're subscribed!
@@ -7,7 +8,7 @@ you're subscribed!
   <input type="hidden" name="membership[newsletter_id]" value="<%= @newsletter.id %>"" />
 
 
-<button type="submit" class="primary"> Subscribe</button>
+<button type="submit" class="ml-5 inline-block px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out"> Subscribe</button>
 </form>
 <% end %>
-```
+</div>

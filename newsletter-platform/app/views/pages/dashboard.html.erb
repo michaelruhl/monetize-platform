@@ -4,13 +4,20 @@
 	Place some content inside to see the effect. -->
 	<div>
 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <h1>
+    <div class="flex flex-col text-3xl p-5 text-center justify-center">
       Newsletters
-      <p>Subscribe to get started!</p>
-    </h1>
+    </div>
+
     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
       <div class="overflow-hidden">
         <table class="min-w-full text-center text-sm font-light">
+        <thead class="border-b font-medium dark:border-neutral-500">
+  <tr>
+    <th scope="col" class="px-6 py-4" colspan="2">
+      <p class="text-center">Subbed Newsletters!</p>
+    </th>
+  </tr>
+</thead>
           <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
               
@@ -25,12 +32,25 @@
                 <%= n.title %>
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                <a href="<%= edit_newsletter_path(n) %>">Edit<span> <%= n.title %> </span></a>
+                <a href="<%= newsletter_path(n) %>" class="ml-5 inline-block px-2 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">View</a>
 
               </td>
             </tr>
             <% end %>
-
+            <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              
+              <th scope="col" class="px-6 py-4"></th>
+              <th scope="col" class="px-6 py-4"><span></span></th>
+            </tr>
+          </thead>
+            <thead class="border-b font-medium dark:border-neutral-500">
+  <tr>
+    <th scope="col" class="px-6 py-4" colspan="2">
+      <p class="text-center">Search for Newsletters!</p>
+    </th>
+  </tr>
+</thead>
             <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
               
@@ -38,6 +58,7 @@
               <th scope="col" class="px-6 py-4"><span>View</span></th>
             </tr>
           </thead>
+          
 
              <% @newsletters.each do |n| %>
             <tr class="border-b dark:border-neutral-500">
@@ -45,7 +66,7 @@
                 <%= n.title %>
               </td>
               <td class="whitespace-nowrap px-6 py-4">
-                <a href="<%= newsletter_path(n) %>">View<span> <%= n.title %> </span></a>
+                <a href="<%= newsletter_path(n) %>" class="ml-5 inline-block px-2 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">View</a>
 
               </td>
             </tr>
@@ -59,13 +80,23 @@
 
 	<div>
 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <h1>
+    <div class="flex flex-col text-3xl p-5 text-center justify-center">
       Issues
-      <p>Read on, Friend!</p>
-    </h1>
+    </div>
+
     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
       <div class="overflow-hidden">
         <table class="min-w-full text-center text-sm font-light">
+            <% if @issues.empty? %>
+            Subscribe to a Newsletter to see issues!
+            <% else %>
+        <thead class="border-b font-medium dark:border-neutral-500">
+  <tr>
+    <th scope="col" class="px-6 py-4" colspan="2">
+      <p class="text-center">Read on, friend!</p>
+    </th>
+  </tr>
+</thead>
           <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
               
@@ -74,21 +105,19 @@
             </tr>
           </thead>
           <tbody>
-            <% @issues.each do |n| %>
-            <tr class="border-b dark:border-neutral-500">
-              <td class="whitespace-nowrap px-6 py-4 font-medium">
-                <%= n.subject %>
-              </td>
-              <td class="whitespace-nowrap px-6 py-4">
-                <a href="<%= issue_path(n) %>">Read<span> <%= n.subject %> </span></a>
+              <% @issues.each do |n| %>
+              <tr class="border-b dark:border-neutral-500">
+                <td class="whitespace-nowrap px-6 py-4 font-medium">
+                  <%= n.subject %>
+                </td>
+                <td class="whitespace-nowrap px-6 py-4">
+                  <a href="<%= issue_path(n) %>" class="ml-5 inline-block px-2 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">Read</a>
 
-              </td>
-            </tr>
-            <% end %>
-            <% if @issues.empty? %>
-            Create a new issue
-            <% end %>
+                </td>
+              </tr>
+              <% end %>
           </tbody>
+            <% end %>
         </table>
       </div>
     </div>
